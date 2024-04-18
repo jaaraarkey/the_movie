@@ -42,16 +42,16 @@ function Header() {
   ];
 
   return (
-    <div className="flex items-center justify-between p-5">
-      <div className="flex items-center gap-8 items-center ">
+    <div className="flex items-center justify-between p-2 ">
+      <div className="flex items-center gap-1 items-center ">
         {/* Logo */}
         <img
           src={logo}
           alt="logo"
-          className="w-[80px] md:w-[115px] object-cover"
+          className="w-[50px] md:w-[115px] object-cover relative -top-2"
         />
         {/* Menu */}
-        <div className=" hidden md:flex items-center gap-8">
+        <div className=" hidden md:flex items-center gap-4">
           {menu.map((item) => (
             <HeaderItem name={item.name} Icon={item.icon} />
           ))}
