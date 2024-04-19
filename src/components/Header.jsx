@@ -8,7 +8,6 @@ import {
   HiStar,
   HiPlayCircle,
   HiTv,
-  HiChevronRight,
 } from "react-icons/hi2";
 
 import { HiPlus, HiMiniEllipsisVertical } from "react-icons/hi2";
@@ -42,13 +41,13 @@ function Header() {
   ];
 
   return (
-    <div className="flex items-center justify-between p-2 ">
-      <div className="flex items-center gap-1 items-center ">
+    <div className="flex items-center justify-between p-6 ">
+      <div className="flex gap-1 items-center ">
         {/* Logo */}
         <img
           src={logo}
           alt="logo"
-          className="w-[50px] md:w-[115px] object-cover relative -top-2"
+          className="w-[50px] md:w-[100px] object-cover relative -top-2"
         />
         {/* Menu */}
         <div className=" hidden md:flex items-center gap-4">
@@ -64,7 +63,7 @@ function Header() {
               index < 3 && <HeaderItem name={""} Icon={item.icon} />
           )}
 
-          <div className="md:hidden" onClick={() => setToggle(!toggle)}>
+          <div className="me-8 md:hidden" onClick={() => setToggle(!toggle)}>
             <HeaderItem
               className="absolute mt-3 bg-[#ffffff] border-[1px] pd-3"
               Icon={HiMiniEllipsisVertical}

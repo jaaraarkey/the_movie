@@ -12,6 +12,13 @@ function Slider() {
     getTrendingMovies();
   }, []);
 
+  const sliderRight = (element) => {
+    element.scrollLeft += screenWidth - 108;
+  };
+
+  const sliderLeft = (element) => {
+    element.scrollLeft -= screenWidth - 108;
+  };
   const getTrendingMovies = () => {
     GlobalApi.getTrendingVideos.then((resp) => {
       console.log(resp.data.results);
@@ -19,33 +26,26 @@ function Slider() {
     });
   };
 
-  const sliderRight = (element) => {
-    element.scrollLeft += screenWidth - screenWidth / 9;
-  };
-
-  const sliderLeft = (element) => {
-    element.scrollLeft -= screenWidth - screenWidth / 6;
-  };
-
   return (
-    <div className="mx-8">
+    <div name="left-chevrone" className="mx-8">
       {/* Chevrons */}
       <HiChevronLeft
-        className="hidden md:block text-[2rem] absolute mx-0 mt-[150px] cursor-pointer"
+        className="hidden md:block text-[2rem] absolute -mx-0 mt-[190px] cursor-pointer"
         onClick={() => sliderLeft(elementRef.current)}
       />
       <HiChevronRight
-        className="hidden md:block text-[2rem] absolute mx-8 mt-[150px] cursor-pointer right-0"
+        className="hidden md:block text-[2rem] absolute mx-8 mt-[190px] cursor-pointer right-0"
         onClick={() => sliderRight(elementRef.current)}
       />
       <div
-        className="flex overflow-x-auto w-full px-16 py-4 scrollbar-hide scroll-smooth"
+        className="flex overflow-x-auto w-full px-8 py-4 scrollbar-hide scroll-smooth"
         ref={elementRef}
       >
         {movieList.map((item, index) => (
-          <img
+          <img /* eslint-disable-next-line */
+            title="HeroImg"
             src={IMAGE_BASE_URL + item.backdrop_path}
-            className="min-w-full md:h-[310px] object-cover object-left-top mr-5 rounded-md hover:border-[2px] border-gray-400/50 transition-all duration-100 ease-in-out"
+            className="min-w-full md:h-[400px] object-cover object-left-top mr-5 rounded-md hover:border-[4px] border-gray-400/50 transition-all duration-100 ease-in"
           ></img>
         ))}
       </div>

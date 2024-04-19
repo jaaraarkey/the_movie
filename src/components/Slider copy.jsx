@@ -1,0 +1,62 @@
+import React, { useEffect, useState, useRef } from "react";
+import GlobalApi from "../Services/GlobalApi";
+import { HiChevronRight, HiChevronLeft } from "react-icons/hi2";
+
+const IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original";
+const screenWidth = window.innerWidth;
+
+function Slider() {
+const [movieList, setMovieList] = useState([]);
+const elementRef = useRef();
+useEffect(() => {
+getTrendingMovies();
+}, []);
+
+const getTrendingMovies = () => {
+GlobalApi.getTrendingVideos.then((resp) => {
+console.log(resp.data.results);
+setMovieList(resp.data.results);
+});
+};
+
+const sliderLeft = (element) => {
+element.scrollLeft = element.screenWidth - screenWidth;
+};
+
+const sliderRight = (element) => {
+console.log(element.scrollLeft);
+const scrollPosition =
+/_ element.scrollLeft + (screenWidth - 110) - _/ element.offsetWidth / 2;
+
+    // Scroll to the calculated position
+    element.scrollLeft -= scrollPosition;
+
+};
+
+return (
+<div name="left-chevrone" className="mx-8">
+{/_ Chevrons _/}
+<HiChevronLeft
+className="hidden md:block text-[2rem] absolute -mx-8
+mt-[190px] cursor-pointer"
+onClick={() => sliderLeft(elementRef.current)}
+/>
+<HiChevronRight
+className="hidden md:block text-[2rem] absolute mx-8 mt-[190px] cursor-pointer right-0"
+onClick={() => sliderRight(elementRef.current)}
+/>
+<div
+        className="flex overflow-x-auto w-full px-16 py-4 scrollbar-hide scroll-smooth"
+        ref={elementRef}
+      >
+{movieList.map((item, index) => (
+<img
+src={IMAGE_BASE_URL + item.backdrop_path}
+className="min-w-full md:h-[400px] object-cover object-left-top mr-5 rounded-md hover:border-[2px] border-gray-400/50 transition-all duration-100 ease-in-out" ></img>
+))}
+</div>
+</div>
+);
+}
+
+export default Slider;
