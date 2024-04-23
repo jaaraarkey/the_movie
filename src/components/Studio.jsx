@@ -46,15 +46,17 @@ function Studio() {
     <div className="flex gap-2 md:gap-5 p-2 px-5 md:px-16">
       {studioList.map((item) => {
         return (
-          <div className="border-[2px] border-gray-600 rounded-md hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
-            <video
-              src={item.video}
-              autoPlay
-              loop
-              playsInline
-              className="absolute top-0 rounded-md z-0 opacity-20 hover:opacity-50 w-96  object-cover"
-            />
-            <img src={item.image} className="w-full z-[1]" />
+          <div className=" relative flex">
+            <div className="border-[2px] border-gray-600 rounded-md hover:scale-105 transition-all duration-300 ease-in-out cursor-pointer">
+              <video
+                src={item.video}
+                autoPlay
+                loop
+                playsInline
+                className="absolute top-0 rounded-md z-0 opacity-20 hover:opacity-50 w-96  object-cover"
+              />
+              <img src={item.image} className="w-full z-[1]" />
+            </div>
           </div>
         );
       })}
